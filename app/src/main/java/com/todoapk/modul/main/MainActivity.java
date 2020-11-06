@@ -7,7 +7,7 @@ import com.todoapk.base.BaseFragmentHolderActivity;
 
 public class MainActivity extends BaseFragmentHolderActivity {
     MainFragment mainFragment;
-    private final int UPDATE_REQUEST = 2019;
+//    private final int UPDATE_REQUEST = 2019;
 
     @Override
     protected void initializeFragment() {

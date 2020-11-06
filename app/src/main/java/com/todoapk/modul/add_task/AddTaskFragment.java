@@ -1,16 +1,15 @@
 package com.todoapk.modul.add_task;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.todoapk.MainActivity;
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
 
@@ -21,10 +20,10 @@ import com.todoapk.base.BaseFragment;
 
 public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContract.Presenter> implements AddTaskContract.View {
 
-    EditText etEmail;
-    EditText etPassword;
+    TextView tv_date;
+    EditText et_title;
+    EditText et_time;
     Button btnSubmit;
-
 
     public AddTaskFragment() {
     }
@@ -37,6 +36,10 @@ public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContra
         mPresenter = new AddTaskPresenter(this);
         mPresenter.start();
 
+        tv_date = fragmentView.findViewById(R.id.date_1);
+        et_title = fragmentView.findViewById(R.id.et_title_1);
+        et_time = fragmentView.findViewById(R.id.et_time_1);
+        btnSubmit = fragmentView.findViewById(R.id.delete_btn);
 //        etEmail = fragmentView.findViewById(R.id.et_email);
 //        etPassword = fragmentView.findViewById(R.id.et_password);
 //        btnLogin = fragmentView.findViewById(R.id.bt_login);
@@ -46,17 +49,24 @@ public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContra
 //                setBtLoginClick();
 //            }
 //        });
-        btnSubmit = fragmentView.findViewById(R.id.submit_btn);
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                redirectToMain();
+                setBtnSubmitClick(view);
             }
         });
 
         setTitle("Profile");
 
         return fragmentView;
+    }
+
+    private void setBtnSubmitClick(View view) {
+        String date = tv_date.getText().toString();
+        String title = et_title.getText().toString();
+        String time = et_time.getText().toString();
+        mPresenter.addTask(date,title,time);
     }
 
 //    public void setBtLoginClick(){

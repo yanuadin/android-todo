@@ -1,13 +1,12 @@
-package com.todoapk.modul.add_task;
+package com.todoapk.modul.login;
 
 import android.view.View;
 
 import com.todoapk.base.BaseFragmentHolderActivity;
 
+public class LoginActivity extends BaseFragmentHolderActivity {
 
-public class AddTaskActivity extends BaseFragmentHolderActivity {
-    AddTaskFragment addTaskFragment;
-//    private final int UPDATE_REQUEST = 2019;
+    LoginFragment loginFragment;
 
     @Override
     protected void initializeFragment() {
@@ -18,11 +17,7 @@ public class AddTaskActivity extends BaseFragmentHolderActivity {
 //        ivIcon.setImageResource(R.drawable.....);
         ivIcon.setVisibility(View.VISIBLE);
 
-        addTaskFragment = new AddTaskFragment();
-        setCurrentFragment(addTaskFragment, true);
-
+        loginFragment = new LoginFragment();
+        setCurrentFragment(loginFragment, false);
     }
-
-
-
 }

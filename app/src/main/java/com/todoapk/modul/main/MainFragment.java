@@ -2,6 +2,7 @@ package com.todoapk.modul.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
+import com.todoapk.model.Task;
 import com.todoapk.modul.add_task.AddTaskActivity;
 import com.todoapk.modul.edit_task.EditTaskActivity;
+import com.todoapk.utils.RecyclerViewAdapterTodoList;
 
+import static com.todoapk.utils.Constants.TASK_ID;
 
 /**
  * Created by fahrul on 13/03/19.
@@ -23,11 +29,8 @@ import com.todoapk.modul.edit_task.EditTaskActivity;
 
 public class MainFragment extends BaseFragment<MainActivity, MainContract.Presenter> implements MainContract.View {
 
-    EditText etEmail;
-    EditText etPassword;
     Button addActivity;
-    TextView editActivity;
-
+    RecyclerView rvTask;
 
     public MainFragment() {
     }
@@ -56,23 +59,28 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
                 redirectToAddTask();
             }
         });
-        editActivity = fragmentView.findViewById(R.id.title_1);
-        editActivity.setOnClickListener(new View.OnClickListener() {
+        rvTask = fragmentView.findViewById(R.id.rv_task);
+        RecyclerViewAdapterTodoList adapterTodoList = new RecyclerViewAdapterTodoList();
+        rvTask.setHasFixedSize(true);
+        rvTask.setLayoutManager(new LinearLayoutManager(activity));
+        rvTask.setAdapter(adapterTodoList);
+        adapterTodoList.setTaskList(mPresenter.getTasks());
+        adapterTodoList.setTodoListClickListener(new RecyclerViewAdapterTodoList.TodoListClickListener() {
             @Override
-            public void onClick(View view) {
-                redirectToEditTask();
+            public void onTaskClick(Task task) {
+                String id = task.getId();
+                mPresenter.editTask(id);
+            }
+
+            @Override
+            public void onTaskCheckBoxClick(Task task) {
+
             }
         });
 
         setTitle("My Login View");
 
         return fragmentView;
-    }
-
-    public void setBtLoginClick(){
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        mPresenter.performLogin(email,password);
     }
 
     @Override
@@ -88,8 +96,9 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
     }
 
     @Override
-    public void redirectToEditTask() {
+    public void redirectToEditTask(String id) {
         Intent intent = new Intent(activity, EditTaskActivity.class);
+        intent.putExtra(TASK_ID, id);
         startActivity(intent);
 //        activity.finish();
     }

@@ -235,7 +235,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/pt_title_1"
+                android:id="@+id/et_title_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -261,7 +261,7 @@
                 android:id="@+id/lbl_time_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Time Start"
+                android:text="Time"
                 android:textAlignment="textStart"
                 android:textColor="#292828"
                 android:textSize="17sp"
@@ -273,7 +273,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/pt_time_1"
+                    android:id="@+id/et_time_1"
                     android:layout_width="263dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -293,64 +293,17 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/time_end_layout"
-            android:layout_width="0dp"
-            android:layout_height="106dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/not_active"
-            android:orientation="vertical"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_start_layout">
-
-            <TextView
-                android:id="@+id/lbl_time_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Time End"
-                android:textAlignment="textStart"
-                android:textColor="#292828"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/pt_time_2"
-                    android:layout_width="263dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="11:15"
-                    android:textColor="#B3000000"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-                <!--                app:srcCompat="@mipmap/ic_time_foreground" />-->
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/linearLayout9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_end_layout">
+            app:layout_constraintTop_toBottomOf="@+id/time_start_layout">
 
             <Button
-                android:id="@+id/submit_btn"
+                android:id="@+id/delete_btn"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:background="@drawable/btn_rounded"
@@ -364,14 +317,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_end_layout">
+            app:layout_constraintTop_toBottomOf="@+id/time_start_layout">
 
             <Button
-                android:id="@+id/submit_btn3"
+                android:id="@+id/save_btn"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"

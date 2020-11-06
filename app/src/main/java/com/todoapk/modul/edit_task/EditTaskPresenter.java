@@ -17,10 +17,20 @@ public class EditTaskPresenter implements EditTaskContract.Presenter{
     public void start() {}
 
     @Override
-    public void performLogin(final String email, final String password){
-        //proses login
-        //if login success call redirect to profile
-//        view.redirectToProfile();
+    public void updateTask(String id, String date, String title, String time) {
+        view.redirectToMain();
     }
+
+    @Override
+    public void deleteTask(String id) {
+        view.redirectToMain();
+    }
+
+//    @Override
+//    public void performLogin(final String email, final String password){
+//        proses login
+//        if login success call redirect to profile
+//        view.redirectToProfile();
+//    }
 
 }

@@ -7,8 +7,6 @@ package com.todoapk.modul.add_task;
 public class AddTaskPresenter implements AddTaskContract.Presenter{
     private final AddTaskContract.View view;
 
-
-
     public AddTaskPresenter(AddTaskContract.View view) {
         this.view = view;
     }
@@ -17,10 +15,8 @@ public class AddTaskPresenter implements AddTaskContract.Presenter{
     public void start() {}
 
     @Override
-    public void performLogin(final String email, final String password){
-        //proses login
-        //if login success call redirect to profile
-//        view.redirectToProfile();
+    public void addTask(String date, String title, String time){
+        view.redirectToMain();
     }
 
 }

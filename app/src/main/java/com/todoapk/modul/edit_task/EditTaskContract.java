@@ -13,6 +13,8 @@ public interface EditTaskContract {
     }
 
     interface Presenter extends BasePresenter {
-        void performLogin(String email, String password);
+//        void performLogin(String email, String password);
+        void updateTask(String id, String date, String title, String time);
+        void deleteTask(String id);
     }
 }
