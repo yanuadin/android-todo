@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
-import com.todoapk.model.Task;
+import com.todoapk.data.source.local.TaskTableHandler;
+import com.todoapk.data.source.session.TaskSessionRepository;
+import com.todoapk.data.model.Task;
 import com.todoapk.modul.add_task.AddTaskActivity;
 import com.todoapk.modul.edit_task.EditTaskActivity;
 import com.todoapk.utils.RecyclerViewAdapterTodoList;
@@ -40,18 +42,9 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_main, container, false);
-        mPresenter = new MainPresenter(this);
+        mPresenter = new MainPresenter(this, new TaskSessionRepository(getActivity()), new TaskTableHandler(getActivity()));
         mPresenter.start();
 
-//        etEmail = fragmentView.findViewById(R.id.et_email);
-//        etPassword = fragmentView.findViewById(R.id.et_password);
-//        btnLogin = fragmentView.findViewById(R.id.bt_login);
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                setBtLoginClick();
-//            }
-//        });
         addActivity = fragmentView.findViewById(R.id.btn_addNew);
         addActivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +62,7 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
             @Override
             public void onTaskClick(Task task) {
                 String id = task.getId();
-                mPresenter.editTask(id);
+                redirectToEditTask(id);
             }
 
             @Override
@@ -78,7 +71,7 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
             }
         });
 
-        setTitle("My Login View");
+        setTitle("To-Do List");
 
         return fragmentView;
     }
@@ -100,6 +93,5 @@ public class MainFragment extends BaseFragment<MainActivity, MainContract.Presen
         Intent intent = new Intent(activity, EditTaskActivity.class);
         intent.putExtra(TASK_ID, id);
         startActivity(intent);
-//        activity.finish();
     }
 }

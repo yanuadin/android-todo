@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.todoapk.R;
-import com.todoapk.model.Task;
+import com.todoapk.data.model.Task;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class RecyclerViewAdapterTodoList extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.task = taskList.get(position);
         holder.tvTitle.setText(holder.task.getTitle());
-        holder.tvRangeTime.setText(holder.task.getTime());
+        holder.tvTime.setText(holder.task.getTime());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

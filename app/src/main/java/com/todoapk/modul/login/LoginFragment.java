@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
+import com.todoapk.data.source.session.UserSessionRepository;
 import com.todoapk.modul.main.MainActivity;
 
 public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Presenter> implements LoginContract.View {
@@ -26,7 +27,7 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.activity_login, container, false);
-        mPresenter = new LoginPresenter(this, requireContext());
+        mPresenter = new LoginPresenter(this, new UserSessionRepository(getActivity()));
         mPresenter.start();
 
         etEmail = fragmentView.findViewById(R.id.et_email);

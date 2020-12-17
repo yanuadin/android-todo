@@ -2,6 +2,7 @@ package com.todoapk.modul.edit_task;
 
 import com.todoapk.base.BasePresenter;
 import com.todoapk.base.BaseView;
+import com.todoapk.data.model.Task;
 
 /**
  * Created by fahrul on 13/03/19.
@@ -10,11 +11,13 @@ import com.todoapk.base.BaseView;
 public interface EditTaskContract {
     interface View extends BaseView<Presenter> {
         void redirectToMain();
+        void showData(Task task);
+        void setId(String id);
     }
 
     interface Presenter extends BasePresenter {
-//        void performLogin(String email, String password);
-        void updateTask(String id, String date, String title, String time);
-        void deleteTask(String id);
+        void loadData(String id);
+        void updateTask(String date, String title, String time);
+        void deleteTask();
     }
 }

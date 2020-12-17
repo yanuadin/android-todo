@@ -1,6 +1,10 @@
 package com.todoapk.modul.main;
 
-import com.todoapk.model.Task;
+import android.util.Log;
+
+import com.todoapk.data.source.local.TableHandler;
+import com.todoapk.data.source.session.SessionRepository;
+import com.todoapk.data.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,36 +15,22 @@ import java.util.List;
 
 public class MainPresenter implements MainContract.Presenter{
     private final MainContract.View view;
+    private final SessionRepository sessionRepository;
+    private final TableHandler tableHandler;
 
-    public MainPresenter(MainContract.View view) {
+    public MainPresenter(MainContract.View view, SessionRepository sessionRepository, TableHandler tableHandler) {
         this.view = view;
+        this.sessionRepository = sessionRepository;
+        this.tableHandler = tableHandler;
     }
 
     @Override
     public void start() {}
 
     @Override
-    public void addTask() {
-        view.redirectToAddTask();
-    }
-
-    @Override
-    public void editTask(String id) {
-        view.redirectToEditTask(id);
-    }
-
-    @Override
-    public List<Task> getTasks() {
+    public ArrayList<Task> getTasks() {
         // This should be getting data from DB
-        ArrayList<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("1", "2020/11/05", "Buy a pack of coffe", "08.00"));
-        tasks.add(new Task("2", "2020/11/05", "Meet with client", "13.00"));
-        tasks.add(new Task("3", "2020/11/05", "Dinner", "19.00"));
-        tasks.add(new Task("4", "2020/11/05", "Playing Gmae", "22.00"));
-        tasks.add(new Task("5", "2020/11/05", "Buy a pack of coffe", "08.00"));
-        tasks.add(new Task("6", "2020/11/05", "Buy a pack of coffe", "08.00"));
-        tasks.add(new Task("7", "2020/11/05", "Buy a pack of coffe", "08.00"));
-
+        ArrayList<Task> tasks = tableHandler.readAll();
         return tasks;
     }
 

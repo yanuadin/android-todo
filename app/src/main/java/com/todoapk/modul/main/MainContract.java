@@ -2,8 +2,9 @@ package com.todoapk.modul.main;
 
 import com.todoapk.base.BasePresenter;
 import com.todoapk.base.BaseView;
-import com.todoapk.model.Task;
+import com.todoapk.data.model.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,10 +18,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter {
-//        void performLogin(String email, String password);
-        void addTask();
-        void editTask(String id);
-
-        List<Task> getTasks();
+        ArrayList<Task> getTasks();
     }
 }

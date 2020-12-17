@@ -1,5 +1,6 @@
 package com.todoapk.modul.edit_task;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.annotation.Nullable;
 
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
+import com.todoapk.data.model.Task;
+import com.todoapk.data.source.local.TaskTableHandler;
+import com.todoapk.modul.main.MainActivity;
 
 
 /**
@@ -25,7 +29,7 @@ public class EditTaskFragment extends BaseFragment<EditTaskActivity, EditTaskCon
     EditText et_time;
     Button btnSave;
     Button btnDelete;
-
+    String id;
 
     public EditTaskFragment() {
     }
@@ -35,7 +39,7 @@ public class EditTaskFragment extends BaseFragment<EditTaskActivity, EditTaskCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_edit_task, container, false);
-        mPresenter = new EditTaskPresenter(this);
+        mPresenter = new EditTaskPresenter(this, new TaskTableHandler(getActivity()));
         mPresenter.start();
 
         tv_date = fragmentView.findViewById(R.id.date_1);
@@ -44,52 +48,34 @@ public class EditTaskFragment extends BaseFragment<EditTaskActivity, EditTaskCon
         btnSave = fragmentView.findViewById(R.id.save_btn);
         btnDelete = fragmentView.findViewById(R.id.delete_btn);
 
-//        etEmail = fragmentView.findViewById(R.id.et_email);
-//        etPassword = fragmentView.findViewById(R.id.et_password);
-//        btnLogin = fragmentView.findViewById(R.id.bt_login);
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                setBtLoginClick();
-//            }
-//        });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnSaveClick(view);
             }
         });
-
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnDeleteClick(view);
             }
         });
-
-        setTitle("Profile");
+        setTitle("Edit Task");
+        mPresenter.loadData(this.id);
 
         return fragmentView;
     }
 
     private void setBtnSaveClick(View view) {
-        String id = "";
         String date = tv_date.getText().toString();
         String title = et_title.getText().toString();
         String time = et_time.getText().toString();
-        mPresenter.updateTask(id,date,title,time);
+        mPresenter.updateTask(date,title,time);
     }
 
     private void setBtnDeleteClick(View view) {
-        String id = "";
-        mPresenter.deleteTask(id);
+        mPresenter.deleteTask();
     }
-
-//    public void setBtLoginClick(){
-//        String email = etEmail.getText().toString();
-//        String password = etPassword.getText().toString();
-//        mPresenter.performLogin(email,password);
-//    }
 
     @Override
     public void setPresenter(EditTaskContract.Presenter presenter) {
@@ -98,7 +84,21 @@ public class EditTaskFragment extends BaseFragment<EditTaskActivity, EditTaskCon
 
     @Override
     public void redirectToMain() {
-        activity.onBackPressed();
+        Intent intent = new Intent(activity, MainActivity.class);
+        startActivity(intent);
+        activity.finish();
+    }
+
+    @Override
+    public void showData(Task task) {
+        this.tv_date.setText(task.getDate());
+        this.et_title.setText(task.getTitle());
+        this.et_time.setText(task.getTime());
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
 

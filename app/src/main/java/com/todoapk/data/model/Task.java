@@ -1,9 +1,8 @@
-package com.todoapk.model;
+package com.todoapk.data.model;
 
 import com.todoapk.base.BaseModel;
 
 public class Task extends BaseModel {
-
     private String id;
     private String date;
     private String title;
@@ -11,6 +10,12 @@ public class Task extends BaseModel {
 
     public Task(String id, String date, String title, String time) {
         this.id = id;
+        this.date = date;
+        this.title = title;
+        this.time = time;
+    }
+
+    public Task(String date, String title, String time) {
         this.date = date;
         this.title = title;
         this.time = time;

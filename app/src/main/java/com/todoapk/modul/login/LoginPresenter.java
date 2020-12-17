@@ -2,18 +2,17 @@ package com.todoapk.modul.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import static com.todoapk.utils.Constants.EMAIL_KEY;
-import static com.todoapk.utils.Constants.PASSWORD_KEY;
-import static com.todoapk.utils.Constants.PREFERENCE_KEY;
+
+import com.todoapk.data.model.User;
+import com.todoapk.data.source.session.SessionRepository;
 
 public class LoginPresenter implements LoginContract.Presenter {
-
     private final LoginContract.View view;
-    private final SharedPreferences sharedPreferences;
+    private final SessionRepository sessionRepository;
 
-    public LoginPresenter(LoginContract.View view, Context context) {
-        this.sharedPreferences = context.getSharedPreferences(PREFERENCE_KEY, Context.MODE_PRIVATE);
+    public LoginPresenter(LoginContract.View view, SessionRepository sessionRepository) {
         this.view = view;
+        this.sessionRepository = sessionRepository;
     }
 
     @Override
@@ -23,14 +22,14 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     private void saveUser(String email, String password) {
-        SharedPreferences.Editor editor = this.sharedPreferences.edit();
-        editor.putString(EMAIL_KEY, email);
-        editor.putString(PASSWORD_KEY, password);
-        editor.commit();
+        User loggedUser = new User(email, password,"TOKEN123456");
+        sessionRepository.setSessionData(loggedUser);
     }
 
     @Override
     public void start() {
-
+        if(sessionRepository.getSessionData() != null){
+            view.redirectToMain();
+        }
     }
 }

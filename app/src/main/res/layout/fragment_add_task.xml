@@ -240,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="The title is"
+                android:hint="Title..."
                 android:textColor="#B3000000"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -278,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Choose time"
+                    android:hint="Time..."
                     android:textColor="#B3000000"
                     android:textSize="20sp" />
 

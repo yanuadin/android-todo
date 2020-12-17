@@ -1,8 +1,11 @@
 package com.todoapk.modul.edit_task;
 
+import android.util.Log;
 import android.view.View;
 
 import com.todoapk.base.BaseFragmentHolderActivity;
+
+import static com.todoapk.utils.Constants.TASK_ID;
 
 
 public class EditTaskActivity extends BaseFragmentHolderActivity {
@@ -19,8 +22,9 @@ public class EditTaskActivity extends BaseFragmentHolderActivity {
         ivIcon.setVisibility(View.VISIBLE);
 
         editTaskFragment = new EditTaskFragment();
+        String id = getIntent().getExtras().getString(TASK_ID);
+        editTaskFragment.setId(id);
         setCurrentFragment(editTaskFragment, true);
-
     }
 
 

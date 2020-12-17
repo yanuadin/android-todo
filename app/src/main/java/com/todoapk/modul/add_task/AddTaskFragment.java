@@ -1,5 +1,6 @@
 package com.todoapk.modul.add_task;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.annotation.Nullable;
 
 import com.todoapk.R;
 import com.todoapk.base.BaseFragment;
+import com.todoapk.data.source.local.TaskTableHandler;
+import com.todoapk.data.source.session.TaskSessionRepository;
+import com.todoapk.modul.main.MainActivity;
 
 
 /**
@@ -33,22 +37,13 @@ public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContra
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_add_task, container, false);
-        mPresenter = new AddTaskPresenter(this);
+        mPresenter = new AddTaskPresenter(this, new TaskSessionRepository(getActivity()), new TaskTableHandler(getActivity()));
         mPresenter.start();
 
         tv_date = fragmentView.findViewById(R.id.date_1);
         et_title = fragmentView.findViewById(R.id.et_title_1);
         et_time = fragmentView.findViewById(R.id.et_time_1);
-        btnSubmit = fragmentView.findViewById(R.id.delete_btn);
-//        etEmail = fragmentView.findViewById(R.id.et_email);
-//        etPassword = fragmentView.findViewById(R.id.et_password);
-//        btnLogin = fragmentView.findViewById(R.id.bt_login);
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                setBtLoginClick();
-//            }
-//        });
+        btnSubmit = fragmentView.findViewById(R.id.submit_btn);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +52,7 @@ public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContra
             }
         });
 
-        setTitle("Profile");
+        setTitle("Add Task");
 
         return fragmentView;
     }
@@ -82,7 +77,9 @@ public class AddTaskFragment extends BaseFragment<AddTaskActivity, AddTaskContra
 
     @Override
     public void redirectToMain() {
-        activity.onBackPressed();
+        Intent intent = new Intent(activity, MainActivity.class);
+        startActivity(intent);
+        activity.finish();
     }
 
 
