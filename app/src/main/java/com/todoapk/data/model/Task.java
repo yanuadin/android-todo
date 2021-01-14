@@ -3,22 +3,22 @@ package com.todoapk.data.model;
 import com.todoapk.base.BaseModel;
 
 public class Task extends BaseModel {
-    private String id;
-    private String date;
-    private String title;
-    private String time;
+    private String id, title, time;
+    private int date, status;
 
-    public Task(String id, String date, String title, String time) {
+    public Task(String id, int date, String title, String time, int status) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.time = time;
+        this.status = status;
     }
 
-    public Task(String date, String title, String time) {
+    public Task(int date, String title, String time, int status) {
         this.date = date;
         this.title = title;
         this.time = time;
+        this.status = status;
     }
 
     public String getId() {
@@ -30,10 +30,10 @@ public class Task extends BaseModel {
     }
 
     public String getDate() {
-        return date;
+        return String.valueOf(this.date);
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
@@ -51,5 +51,13 @@ public class Task extends BaseModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

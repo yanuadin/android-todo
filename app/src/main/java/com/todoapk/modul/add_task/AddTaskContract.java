@@ -4,7 +4,7 @@ import com.todoapk.base.BasePresenter;
 import com.todoapk.base.BaseView;
 
 /**
- * Created by fahrul on 13/03/19.
+ * Created by YAN on 13/03/19.
  */
 
 public interface AddTaskContract {
@@ -13,6 +13,6 @@ public interface AddTaskContract {
     }
 
     interface Presenter extends BasePresenter {
-        void addTask(String date, String title, String time);
+        void addTask(int date, String title, String time);
     }
 }

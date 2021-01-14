@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "521734568417",
+    "project_id": "todoapk-accf5",
+    "storage_bucket": "todoapk-accf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521734568417:android:c020db43b4d0c7c2f3baa0",
+        "android_client_info": {
+          "package_name": "com.todoapk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521734568417-77c0k093ne5sulh652pul718v8ie53ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todoapk",
+            "certificate_hash": "a7356f6265865066b598c4972d17da48fea7f985"
+          }
+        },
+        {
+          "client_id": "521734568417-gmkucmtha599t9ed8vsft2165h3r9jlp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDN_Mab328fbtoRM0dHUrWrNbTO9DKyJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521734568417-gmkucmtha599t9ed8vsft2165h3r9jlp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

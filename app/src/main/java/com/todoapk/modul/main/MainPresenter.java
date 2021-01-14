@@ -1,7 +1,9 @@
 package com.todoapk.modul.main;
 
+import android.content.Intent;
 import android.util.Log;
 
+import com.todoapk.R;
 import com.todoapk.data.source.local.TableHandler;
 import com.todoapk.data.source.session.SessionRepository;
 import com.todoapk.data.model.Task;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by fahrul on 13/03/19.
+ * Created by YAN on 13/03/19.
  */
 
 public class MainPresenter implements MainContract.Presenter{
@@ -34,5 +36,24 @@ public class MainPresenter implements MainContract.Presenter{
         return tasks;
     }
 
+    @Override
+    public void updateStatus(String id) {
+        Task task = (Task) tableHandler.readById(id);
+        task.setStatus(1);
+        tableHandler.update(task);
+    }
 
+    @Override
+    public void shareTask(String id) {
+        Task task = (Task) tableHandler.readById(id);
+        String taskText =
+                "To-do : " + task.getTitle() + "\n" +
+                "Date : " + task.getDate() + " Jan 2021" + "\n" +
+                "Time : " + task.getTime();
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, taskText);
+        sendIntent.setType("text/plain");
+        view.shareIntent(sendIntent);
+    }
 }

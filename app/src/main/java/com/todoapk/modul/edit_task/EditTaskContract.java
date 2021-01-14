@@ -5,7 +5,7 @@ import com.todoapk.base.BaseView;
 import com.todoapk.data.model.Task;
 
 /**
- * Created by fahrul on 13/03/19.
+ * Created by YAN on 13/03/19.
  */
 
 public interface EditTaskContract {
@@ -17,7 +17,7 @@ public interface EditTaskContract {
 
     interface Presenter extends BasePresenter {
         void loadData(String id);
-        void updateTask(String date, String title, String time);
+        void updateTask(int date, String title, String time);
         void deleteTask();
     }
 }

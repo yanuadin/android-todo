@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Time Picker theme. -->
+    <style name="TimePickerThemeYAN" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/YAN_primaryDark</item>
+        <item name="android:textColorSecondary">@color/YAN_secondaryDark</item>
+    </style>
+
     <!-- My Theme -->
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/myPrimary</item>

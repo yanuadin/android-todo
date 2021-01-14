@@ -8,4 +8,7 @@
     <string name="profile_title">Profile</string>
 
     <string name="default_value">u0020</string>
+
+    <string name="txt_day">Sun</string>
+    <string name="txt_date">12</string>
 </resources>

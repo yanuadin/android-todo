@@ -28,6 +28,7 @@ public class TaskTableHandler implements TableHandler<Task>{
         values.put(DatabaseContract.FeedTask.COLUMN_DATE, task.getDate());
         values.put(DatabaseContract.FeedTask.COLUMN_TITLE, task.getTitle());
         values.put(DatabaseContract.FeedTask.COLUMN_TIME, task.getTime());
+        values.put(DatabaseContract.FeedTask.COLUMN_STATUS, task.getStatus());
         long newRowId = db.insert(DatabaseContract.FeedTask.TABLE_NAME, null, values);
     }
 
@@ -41,7 +42,8 @@ public class TaskTableHandler implements TableHandler<Task>{
                 DatabaseContract.FeedTask._ID,
                 DatabaseContract.FeedTask.COLUMN_DATE,
                 DatabaseContract.FeedTask.COLUMN_TITLE,
-                DatabaseContract.FeedTask.COLUMN_TIME
+                DatabaseContract.FeedTask.COLUMN_TIME,
+                DatabaseContract.FeedTask.COLUMN_STATUS
         };
 
         // Filter results WHERE "id" = id
@@ -68,9 +70,10 @@ public class TaskTableHandler implements TableHandler<Task>{
         Task task = new Task(
                 cursor.getLong(
                         cursor.getColumnIndexOrThrow(DatabaseContract.FeedTask._ID))+"",
-                cursor.getString(1),//date
-                cursor.getString(2),//title
-                cursor.getString(3));//time
+                cursor.getInt(1), //date
+                cursor.getString(2), //title
+                cursor.getString(3), //time
+                cursor.getInt(4)); //status
 
         return task;
     }
@@ -89,9 +92,10 @@ public class TaskTableHandler implements TableHandler<Task>{
                 Task task = new Task(
                         cursor.getLong(
                                 cursor.getColumnIndexOrThrow(DatabaseContract.FeedTask._ID))+"",
-                        cursor.getString(1),//date
-                        cursor.getString(2),//title
-                        cursor.getString(3));//time
+                        cursor.getInt(1), //date
+                        cursor.getString(2), //title
+                        cursor.getString(3), //time
+                        cursor.getInt(4)); //status
 
                 taskList.add(task);
             } while (cursor.moveToNext());
@@ -110,6 +114,7 @@ public class TaskTableHandler implements TableHandler<Task>{
         values.put(DatabaseContract.FeedTask.COLUMN_DATE, task.getDate());
         values.put(DatabaseContract.FeedTask.COLUMN_TITLE, task.getTitle());
         values.put(DatabaseContract.FeedTask.COLUMN_TIME, task.getTime());
+        values.put(DatabaseContract.FeedTask.COLUMN_STATUS, task.getStatus());
 
         // Which row to update, based on the title
         String selection = DatabaseContract.FeedTask._ID + " LIKE ?";

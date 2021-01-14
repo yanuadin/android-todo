@@ -4,13 +4,13 @@ import com.todoapk.data.model.Task;
 import com.todoapk.data.source.local.TableHandler;
 
 /**
- * Created by fahrul on 13/03/19.
+ * Created by YAN on 13/03/19.
  */
 
 public class EditTaskPresenter implements EditTaskContract.Presenter{
     private final EditTaskContract.View view;
     private final TableHandler tableHandler;
-    Task task;
+    private Task task;
 
     public EditTaskPresenter(EditTaskContract.View view, TableHandler tableHandler) {
         this.view = view;
@@ -27,7 +27,7 @@ public class EditTaskPresenter implements EditTaskContract.Presenter{
     }
 
     @Override
-    public void updateTask(String date, String title, String time) {
+    public void updateTask(int date, String title, String time) {
         task.setDate(date);
         task.setTitle(title);
         task.setTime(time);

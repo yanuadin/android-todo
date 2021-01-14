@@ -5,7 +5,7 @@ import com.todoapk.data.source.session.SessionRepository;
 import com.todoapk.data.model.Task;
 
 /**
- * Created by fahrul on 13/03/19.
+ * Created by YAN on 13/03/19.
  */
 
 public class AddTaskPresenter implements AddTaskContract.Presenter{
@@ -23,8 +23,8 @@ public class AddTaskPresenter implements AddTaskContract.Presenter{
     public void start() {}
 
     @Override
-    public void addTask(String date, String title, String time){
-        Task newTask = new Task(date, title, time);
+    public void addTask(int date, String title, String time){
+        Task newTask = new Task(date, title, time, 0);
         tableHandler.create(newTask);
 
         view.redirectToMain();

@@ -12,9 +12,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TASK =
             "CREATE TABLE " + DatabaseContract.FeedTask.TABLE_NAME + " (" +
                     DatabaseContract.FeedTask._ID + " INTEGER PRIMARY KEY," +
-                    DatabaseContract.FeedTask.COLUMN_DATE + " TEXT," +
+                    DatabaseContract.FeedTask.COLUMN_DATE + " INTEGER," +
                     DatabaseContract.FeedTask.COLUMN_TITLE + " TEXT," +
-                    DatabaseContract.FeedTask.COLUMN_TIME + " TEXT);";
+                    DatabaseContract.FeedTask.COLUMN_TIME + " TEXT," +
+                    DatabaseContract.FeedTask.COLUMN_STATUS + " INTEGER);";
 
     private static final String SQL_DELETE_TASK =
             "DROP TABLE IF EXISTS " + DatabaseContract.FeedTask.TABLE_NAME;
