@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YAN Application</string>
+    <string name="app_name">YAN-ToDo</string>
 
     <string name="login_title">Login</string>
 
